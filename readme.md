@@ -1,4 +1,4 @@
-##Hinweis
+## Hinweis
 Das ist nur eine Möglichkeit des Projekt-Exports. Es keine "Best-Practise", es hat für mich und meine Bedürfnisse funktioniert. Das muss nicht für alle gelten :-)
 
 ## Outputfilter im Template
