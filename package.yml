@@ -1,0 +1,18 @@
+package: exportproject
+version: dev
+author: Project Admin
+supportpage: www.redaxo.org/de/forum/
+page:
+   title: ExportProject
+   block: addons
+   prio: 0
+   icon: rex-icon rex-icon-system
+   subpages:
+      overview:
+         title: 'overview'
+      export:
+         title: 'export'
+         perm: exportproject[exportproject]
+      zip:
+         title: 'export & zip'
+         perm: exportproject[exportproject]
