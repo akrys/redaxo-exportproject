@@ -1,6 +1,13 @@
 ## Hinweis
 Das ist nur eine Möglichkeit des Projekt-Exports. Es keine "Best-Practise", es hat für mich und meine Bedürfnisse funktioniert. Das muss nicht für alle gelten :-)
 
+### Grundgedanke
+Damit alle Output-Filter (Ich glaube allen voran damals "Protect My Email") angewendet werden, brauchte ich einen Export, wo alle Output-Filter schon angewendet sind. Heißt ich muss die Seite einmal aufrufen und dort am letzt-möglichen Moment das HTML abzugreifen und zu speichern.
+
+Wichtig: Ich hatte damals keine WYSIWYG-Editoren in Nutzung, so dass ich dafür keine Lösung brauchte.
+
+Links und Bilder sollten im Export aber auch funktionieren, mussten also in relative statt absolute URLs umgebaut werden.
+
 ## Outputfilter im Template
 
 Als letztes im Template steht ein Codeblock, der sofern exportiert werden soll, das HTML abgreift und wegspeichert.
@@ -52,10 +59,11 @@ Beispiel:
 	<script type="text/javascript" src="<?= \akrys\redaxo\addon\ProjectExport\UrlNormalizer::normalize(rex_url::frontend('/js/head.js')); ?>?v=<?= UrlNormalizer::getCacheKiller(rex_path::absolute('/js/head.js')); ?>"></script>
 ```
 
+Das müsste analog auch bei Links passieren
+
 ### Bilder
 
 Es gibt eine Klasse, die von ```rex_media``` ableitet. Sie wird benötigt, um den Export bei Aufruf ausführen zu können.
-
 
 ```php
 try {
@@ -95,4 +103,6 @@ if (isset($media) && is_a($media, 'rex_media')) {
 }
 ```
 
-
+#### Idee
+Hier wäre es in Zukunft auch möglich, eine MediaManager-URL rein zu geben, was im Export-Modus eine Generierung des Bildes angestoßen wird und nach ```media/manager``` geschrieben wird. (z.B. als sha1, damit keine Sonderzeichen im Dateinamen stehen.)
+Der UrlNormalizer kann dann auf das Bild in ```media/manager/[hash].jpg``` verweisen.
